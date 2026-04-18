@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Rafa Alcocer | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio personal de Rafa Alcocer centrado en frontend, producto y desarrollo estructurado."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" data-i18n="skipLink">Saltar al contenido</a>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Rafa Alcocer">
+          <span class="brand-full">Rafa Alcocer</span>
+          <span class="brand-short">Rafa</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary">
+          <a href="#projects" data-i18n="nav.projects">Proyectos</a>
+          <a href="#about" data-i18n="nav.about">Sobre mí</a>
+          <a href="#training" data-i18n="nav.training">Formación</a>
+          <a href="#contact" data-i18n="nav.contact">Contacto</a>
+        </nav>
+
+        <div class="header-controls">
+          <div class="language-toggle" role="group" aria-label="Language selector">
+            <button type="button" class="toggle-chip" data-lang-button="es">ES</button>
+            <button type="button" class="toggle-chip" data-lang-button="en">EN</button>
+          </div>
+
+          <button
+            type="button"
+            class="theme-toggle"
+            data-theme-toggle
+            aria-live="polite"
+          ></button>
+
+          <button
+            type="button"
+            class="menu-toggle"
+            data-menu-toggle
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span data-i18n="mobileMenu.open">Menú</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+        <nav class="mobile-nav" aria-label="Mobile">
+          <a href="#projects" data-nav-link data-i18n="nav.projects">Proyectos</a>
+          <a href="#about" data-nav-link data-i18n="nav.about">Sobre mí</a>
+          <a href="#training" data-nav-link data-i18n="nav.training">Formación</a>
+          <a href="#contact" data-nav-link data-i18n="nav.contact">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero section" id="top">
+        <div class="container hero-inner">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Full-Stack Developer</p>
+          <h1 data-i18n="hero.headline">Frontend, producto y desarrollo estructurado.</h1>
+          <p class="hero-copy" data-i18n="hero.body">
+            Construyo experiencias web claras, usables y cuidadas, con especial atención a la
+            estructura, la iteración y la calidad visual.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" data-external-link="campinApp" data-i18n="hero.primaryCta"
+              >Ver CampIn</a
+            >
+            <a class="button button-secondary" href="#contact" data-i18n="hero.secondaryCta"
+              >Contacto</a
+            >
+            <a
+              class="text-link"
+              data-external-link="github"
+              data-i18n="hero.tertiaryCta"
+              target="_blank"
+              rel="noreferrer noopener"
+              >GitHub</a
+            >
+          </div>
+
+          <p class="stack-line" data-i18n="hero.stack">
+            React · TypeScript · Vite · Tailwind · Zustand · Supabase
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label" data-i18n="featured.label">Proyecto destacado</p>
+            <h2 data-i18n="featured.title">CampIn</h2>
+          </div>
+
+          <div class="featured-grid">
+            <div class="featured-copy">
+              <p class="featured-summary" data-i18n="featured.summary">
+                Planificación de escapadas de camping con una experiencia centrada en claridad,
+                organización y continuidad de uso.
+              </p>
+              <p class="section-copy" data-i18n="featured.description">
+                CampIn está planteado como un producto web orientado a facilitar la preparación de
+                viajes de camping mediante flujos claros, persistencia de viajes y una interfaz
+                pensada para reducir fricción.
+              </p>
+            </div>
+
+            <a
+              class="project-preview-link"
+              data-external-link="campinApp"
+              aria-label="Open CampIn"
+            >
+              <article class="project-preview">
+                <div class="preview-toolbar">
+                  <span class="preview-dot"></span>
+                  <span class="preview-dot"></span>
+                  <span class="preview-dot"></span>
+                  <span class="preview-title">CampIn</span>
+                </div>
+
+                <div class="preview-body">
+                  <figure class="preview-media preview-media-main">
+                    <img
+                      class="preview-image"
+                      src="./assets/campin-preview-main.svg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+
+                  <figure class="preview-media preview-media-alt">
+                    <img
+                      class="preview-image"
+                      src="./assets/campin-preview-alt.svg"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                </div>
+
+                <div class="preview-overlay">
+                  <span data-i18n="featured.previewCta">Abrir app ↗</span>
+                </div>
+              </article>
+            </a>
+
+            <div class="featured-meta">
+              <ul class="feature-list" data-featured-highlights></ul>
+              <p class="stack-line" data-i18n="featured.stack">
+                React · TypeScript · Tailwind · Zustand · Supabase
+              </p>
+
+              <div class="button-row">
+                <a
+                  class="button button-secondary"
+                  data-external-link="campinApp"
+                  data-i18n="featured.buttons.app"
+                  >Abrir app</a
+                >
+                <a
+                  class="button button-secondary"
+                  data-external-link="campinRepo"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  data-i18n="featured.buttons.code"
+                  >Ver código</a
+                >
+                <div data-case-study-slot></div>
+              </div>
+
+              <p class="case-study-note" data-i18n="featured.caseStudyNote">Próximamente</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container section-block">
+          <div class="section-heading section-heading-compact">
+            <h2 data-i18n="about.title">Sobre mí</h2>
+          </div>
+          <p class="section-copy section-copy-wide" data-i18n="about.body">
+            Estoy reorientando mi carrera hacia el desarrollo web con foco en frontend, producto y
+            construcción estructurada. Me interesa crear interfaces claras, cuidadas y útiles, con
+            atención al detalle y criterio real de ejecución.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="how-i-work">
+        <div class="container section-block">
+          <div class="section-heading section-heading-compact">
+            <h2 data-i18n="howIWork.title">Cómo trabajo</h2>
+          </div>
+          <div class="card-grid" data-how-i-work-list></div>
+        </div>
+      </section>
+
+      <section class="section" id="stack">
+        <div class="container section-block">
+          <div class="section-heading section-heading-compact">
+            <h2 data-i18n="stack.title">Stack</h2>
+          </div>
+          <div class="stack-grid" data-stack-list></div>
+        </div>
+      </section>
+
+      <section class="section" id="training">
+        <div class="container section-block">
+          <div class="section-heading section-heading-compact">
+            <h2 data-i18n="training.title">Formación</h2>
+          </div>
+          <ul class="training-list" data-training-list></ul>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div class="container footer-shell">
+        <p data-i18n="footer.copy">Rafa Alcocer © 2026</p>
+        <div class="footer-main">
+          <div class="footer-identity">
+            <p class="footer-name">Rafael Alcocer</p>
+            <p class="footer-role" data-i18n="footer.role">Full-Stack Developer</p>
+          </div>
+          <div class="footer-contact" data-footer-contact></div>
+        </div>
+        <div class="footer-meta">
+          <p data-i18n="footer.copy">© 2026</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

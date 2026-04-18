@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="620" viewBox="0 0 820 620" fill="none">
+  <rect width="820" height="620" rx="28" fill="#F6F2EC"/>
+  <rect x="18" y="18" width="784" height="584" rx="22" fill="#FFFFFF" stroke="#D8E0E8"/>
+  <rect x="48" y="46" width="724" height="64" rx="20" fill="#F4F7FA"/>
+  <text x="78" y="86" fill="#1F252B" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">CampIn</text>
+  <text x="616" y="86" fill="#58626D" font-family="Arial, Helvetica, sans-serif" font-size="18">Packing flow</text>
+  <rect x="48" y="138" width="352" height="190" rx="22" fill="#FCFBF8" stroke="#D8E0E8"/>
+  <text x="76" y="180" fill="#1F252B" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Trip details</text>
+  <text x="76" y="214" fill="#58626D" font-family="Arial, Helvetica, sans-serif" font-size="17">Covaleda pine forest</text>
+  <rect x="76" y="244" width="110" height="32" rx="16" fill="#DCE7F0"/>
+  <text x="108" y="265" fill="#43586E" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">2 adults</text>
+  <rect x="198" y="244" width="126" height="32" rx="16" fill="#EAF0F5"/>
+  <text x="230" y="265" fill="#43586E" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">1 vehicle</text>
+  <rect x="76" y="294" width="286" height="12" rx="6" fill="#5D738A" fill-opacity=".13"/>
+  <rect x="76" y="316" width="214" height="12" rx="6" fill="#5D738A" fill-opacity=".13"/>
+  <rect x="430" y="138" width="342" height="404" rx="22" fill="#FCFBF8" stroke="#D8E0E8"/>
+  <text x="458" y="180" fill="#1F252B" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Packing checklist</text>
+  <rect x="458" y="212" width="286" height="74" rx="18" fill="#F4F7FA"/>
+  <text x="486" y="248" fill="#43586E" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">68%</text>
+  <text x="566" y="248" fill="#58626D" font-family="Arial, Helvetica, sans-serif" font-size="16">completed</text>
+  <rect x="486" y="318" width="232" height="10" rx="5" fill="#5D738A" fill-opacity=".18"/>
+  <rect x="486" y="348" width="196" height="10" rx="5" fill="#5D738A" fill-opacity=".18"/>
+  <rect x="486" y="378" width="248" height="10" rx="5" fill="#5D738A" fill-opacity=".18"/>
+  <rect x="486" y="408" width="178" height="10" rx="5" fill="#5D738A" fill-opacity=".18"/>
+  <rect x="48" y="356" width="352" height="186" rx="22" fill="#FCFBF8" stroke="#D8E0E8"/>
+  <text x="76" y="398" fill="#1F252B" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Session continuity</text>
+  <text x="76" y="432" fill="#58626D" font-family="Arial, Helvetica, sans-serif" font-size="17">Last edits saved across devices and sessions.</text>
+  <rect x="76" y="466" width="292" height="14" rx="7" fill="#5D738A" fill-opacity=".13"/>
+  <rect x="76" y="492" width="252" height="14" rx="7" fill="#5D738A" fill-opacity=".13"/>
+  <rect x="76" y="518" width="186" height="14" rx="7" fill="#5D738A" fill-opacity=".13"/>
+</svg>
