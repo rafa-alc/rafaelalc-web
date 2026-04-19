@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>CampIn — Case study | Rafa Alcocer</title>
+    <meta
+      name="description"
+      content="Case study de CampIn, una herramienta web de planificación de escapadas de camping centrada en claridad, organización y continuidad de uso."
+    />
+    <link rel="icon" href="../../assets/favicon-ra.svg" type="image/svg+xml" />
+    <link rel="icon" href="../../assets/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png" sizes="180x180" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script defer src="./main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" data-skip-link>Saltar al contenido</a>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="brand" href="/#top" aria-label="Rafa Alcocer">
+          <span class="brand-full">Rafa Alcocer</span>
+          <span class="brand-short">Rafa</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary">
+          <a href="/#projects" data-nav="projects">Proyectos</a>
+          <a href="/#about" data-nav="about">Sobre mí</a>
+          <a href="/#training" data-nav="training">Formación</a>
+          <a href="/#contact" data-nav="contact">Contacto</a>
+        </nav>
+
+        <div class="header-controls">
+          <div class="language-toggle" role="group" aria-label="Language selector">
+            <button type="button" class="toggle-chip" data-lang-button="es">ES</button>
+            <button type="button" class="toggle-chip" data-lang-button="en">EN</button>
+          </div>
+
+          <button
+            type="button"
+            class="theme-toggle"
+            data-theme-toggle
+            aria-live="polite"
+          ></button>
+
+          <button
+            type="button"
+            class="menu-toggle"
+            data-menu-toggle
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            Menú
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+        <nav class="mobile-nav" aria-label="Mobile">
+          <a href="/#projects" data-nav-link data-mobile-nav="projects">Proyectos</a>
+          <a href="/#about" data-nav-link data-mobile-nav="about">Sobre mí</a>
+          <a href="/#training" data-nav-link data-mobile-nav="training">Formación</a>
+          <a href="/#contact" data-nav-link data-mobile-nav="contact">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="case-study-page">
+      <div data-case-study-root></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <p>© 2026</p>
+        <div class="footer-main">
+          <div class="footer-identity">
+            <p class="footer-name">Rafael Alcocer</p>
+            <p class="footer-role" data-footer-role>Full-Stack Developer</p>
+          </div>
+          <div class="footer-contact" data-footer-contact></div>
+        </div>
+        <div class="footer-meta">
+          <p>© 2026</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

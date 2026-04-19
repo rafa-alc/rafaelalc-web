@@ -1,7 +1,7 @@
 const SITE_DOMAIN = "rafaelalc.dev";
 const CAMPIN_APP_URL = "/campin";
 const CAMPIN_REPO_URL = "https://github.com/rafa-alc/camping-app";
-const CAMPIN_CASE_STUDY_URL = "";
+const CAMPIN_CASE_STUDY_URL = "/case-study/campin/";
 const CONTACT_EMAIL = `hello@${SITE_DOMAIN}`;
 const GITHUB_URL = "https://github.com/rafa-alc";
 const LINKEDIN_URL = "";
@@ -530,27 +530,12 @@ function renderCaseStudy(featuredCopy) {
     return;
   }
 
-  if (CAMPIN_CASE_STUDY_URL) {
-    caseStudySlot.innerHTML = `
-      <a
-        class="button button-secondary"
-        href="${CAMPIN_CASE_STUDY_URL}"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        ${featuredCopy.buttons.caseStudy}
-      </a>
-    `;
-    caseStudyNote.hidden = true;
-    return;
-  }
-
   caseStudySlot.innerHTML = `
-    <button type="button" class="button button-secondary is-disabled" disabled>
+    <a class="button button-secondary" href="${CAMPIN_CASE_STUDY_URL}">
       ${featuredCopy.buttons.caseStudy}
-    </button>
+    </a>
   `;
-  caseStudyNote.hidden = false;
+  caseStudyNote.hidden = true;
 }
 
 function renderCampinPreview(language) {
@@ -619,7 +604,14 @@ function syncLinkTargets(root = document) {
     root instanceof HTMLAnchorElement ? [root] : root.querySelectorAll?.("a[href]") ?? [];
 
   scope.forEach((link) => {
-    if (!shouldOpenInNewTab(link)) {
+    const openInNewTab = shouldOpenInNewTab(link);
+    if (openInNewTab === null) {
+      return;
+    }
+
+    if (!openInNewTab) {
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
       return;
     }
 
@@ -630,7 +622,21 @@ function syncLinkTargets(root = document) {
 
 function shouldOpenInNewTab(link) {
   const href = link.getAttribute("href");
-  return Boolean(href && !href.startsWith("#"));
+  if (!href || href.startsWith("#")) {
+    return href ? false : null;
+  }
+
+  try {
+    const url = new URL(href, window.location.origin);
+    const isHttpLink = url.protocol === "http:" || url.protocol === "https:";
+    if (!isHttpLink) {
+      return false;
+    }
+
+    return url.origin !== window.location.origin;
+  } catch {
+    return null;
+  }
 }
 
 function observeLinkTargets() {
