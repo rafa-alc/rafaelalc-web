@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/campin",
-      "destination": "https://camping-gaybldp3y-rafa-alcs-projects.vercel.app/"
+      "destination": "https://camping-gayb1dp3y-rafa-alcs-projects.vercel.app/campin/"
     },
     {
       "source": "/campin/:path*",
-      "destination": "https://camping-gaybldp3y-rafa-alcs-projects.vercel.app/:path*"
+      "destination": "https://camping-gayb1dp3y-rafa-alcs-projects.vercel.app/campin/:path*"
     }
   ]
 }
