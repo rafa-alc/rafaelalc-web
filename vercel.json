@@ -2,15 +2,15 @@
   "rewrites": [
     {
       "source": "/campin",
-      "destination": "https://camping-app-git-main-rafa-alcs-projects.vercel.app/campin/"
+      "destination": "https://campin.rafaelalc.dev/campin/"
     },
     {
       "source": "/campin/",
-      "destination": "https://camping-app-git-main-rafa-alcs-projects.vercel.app/campin/"
+      "destination": "https://campin.rafaelalc.dev/campin/"
     },
     {
       "source": "/campin/:path*",
-      "destination": "https://camping-app-git-main-rafa-alcs-projects.vercel.app/campin/:path*"
+      "destination": "https://campin.rafaelalc.dev/campin/:path*"
     }
   ]
 }
