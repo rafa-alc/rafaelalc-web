@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/campin",
+      "destination": "https://camping-gaybldp3y-rafa-alcs-projects.vercel.app/"
+    },
+    {
+      "source": "/campin/:path*",
+      "destination": "https://camping-gaybldp3y-rafa-alcs-projects.vercel.app/:path*"
+    }
+  ]
+}
