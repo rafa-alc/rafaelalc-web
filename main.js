@@ -20,6 +20,13 @@ const STACK_ITEMS = [
   { key: "supabase", name: "Supabase" },
 ];
 
+const CAMPIN_PREVIEW_SLIDES = [
+  { src: "./assets/campIn-1.png" },
+  { src: "./assets/campIn-2.png" },
+  { src: "./assets/campIn-3.png" },
+  { src: "./assets/campIn-4.png" },
+];
+
 const CONTENT = {
   es: {
     skipLink: "Saltar al contenido",
@@ -70,7 +77,8 @@ const CONTENT = {
         caseStudy: "Caso de estudio",
       },
       caseStudyNote: "Próximamente",
-      previewLabel: "Abrir CampIn",
+      previewGalleryLabel: "Capturas de CampIn",
+      previewImageLabel: "Captura de CampIn",
     },
     about: {
       label: "Sobre mí",
@@ -187,7 +195,8 @@ const CONTENT = {
         caseStudy: "Case study",
       },
       caseStudyNote: "Coming soon",
-      previewLabel: "Open CampIn",
+      previewGalleryLabel: "CampIn screenshots",
+      previewImageLabel: "CampIn screenshot",
     },
     about: {
       label: "About",
@@ -279,7 +288,9 @@ const stackList = document.querySelector("[data-stack-list]");
 const trainingList = document.querySelector("[data-training-list]");
 const footerContactList = document.querySelector("[data-footer-contact]");
 const highlightsList = document.querySelector("[data-featured-highlights]");
-const projectPreviewLink = document.querySelector(".project-preview-link");
+const campinPreviewMain = document.querySelector("[data-campin-preview-main]");
+const campinPreviewThumbs = document.querySelectorAll("[data-preview-index]");
+const campinPreviewThumbsContainer = document.querySelector("[data-campin-preview-thumbnails]");
 const caseStudySlot = document.querySelector("[data-case-study-slot]");
 const caseStudyNote = document.querySelector(".case-study-note");
 
@@ -289,6 +300,7 @@ const initialTheme = getInitialTheme();
 let currentLanguage = initialLanguage;
 let currentTheme = initialTheme;
 let mobileMenuOpen = false;
+let currentCampinSlide = 0;
 
 applyTheme(currentTheme);
 applyLanguage(currentLanguage);
@@ -331,6 +343,18 @@ function attachEvents() {
     });
   });
 
+  campinPreviewThumbs.forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextIndex = Number(button.getAttribute("data-preview-index"));
+      if (Number.isNaN(nextIndex) || nextIndex === currentCampinSlide) {
+        return;
+      }
+
+      currentCampinSlide = nextIndex;
+      renderCampinPreview(currentLanguage);
+    });
+  });
+
   handleHeaderScroll();
   renderMenuState();
 }
@@ -364,10 +388,7 @@ function applyLanguage(language) {
   renderTraining(copy.training.items);
   renderFooterContact(copy.contact.items);
   renderCaseStudy(copy.featured);
-
-  if (projectPreviewLink) {
-    projectPreviewLink.setAttribute("aria-label", copy.featured.previewLabel);
-  }
+  renderCampinPreview(language);
 
   updateThemeToggleLabel();
   renderMenuState();
@@ -527,6 +548,29 @@ function renderCaseStudy(featuredCopy) {
     </button>
   `;
   caseStudyNote.hidden = false;
+}
+
+function renderCampinPreview(language) {
+  if (!campinPreviewMain || campinPreviewThumbs.length === 0) {
+    return;
+  }
+
+  const previewCopy = CONTENT[language].featured;
+  const currentSlide = CAMPIN_PREVIEW_SLIDES[currentCampinSlide] ?? CAMPIN_PREVIEW_SLIDES[0];
+
+  campinPreviewMain.src = currentSlide.src;
+  campinPreviewMain.alt = `${previewCopy.previewImageLabel} ${currentCampinSlide + 1}`;
+
+  if (campinPreviewThumbsContainer) {
+    campinPreviewThumbsContainer.setAttribute("aria-label", previewCopy.previewGalleryLabel);
+  }
+
+  campinPreviewThumbs.forEach((button, index) => {
+    const isActive = index === currentCampinSlide;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+    button.setAttribute("aria-label", `${previewCopy.previewImageLabel} ${index + 1}`);
+  });
 }
 
 function renderMenuState() {
