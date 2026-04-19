@@ -301,10 +301,13 @@ let currentLanguage = initialLanguage;
 let currentTheme = initialTheme;
 let mobileMenuOpen = false;
 let currentCampinSlide = 0;
+let linkTargetObserver;
 
 applyTheme(currentTheme);
 applyLanguage(currentLanguage);
 syncExternalLinks();
+syncLinkTargets();
+observeLinkTargets();
 attachEvents();
 
 function attachEvents() {
@@ -608,11 +611,59 @@ function syncExternalLinks() {
     node.classList.remove("is-link-disabled");
     node.removeAttribute("aria-disabled");
     node.removeAttribute("tabindex");
+  });
+}
 
-    if (!href.startsWith("http")) {
-      node.removeAttribute("target");
-      node.removeAttribute("rel");
+function syncLinkTargets(root = document) {
+  const scope =
+    root instanceof HTMLAnchorElement ? [root] : root.querySelectorAll?.("a[href]") ?? [];
+
+  scope.forEach((link) => {
+    if (!shouldOpenInNewTab(link)) {
+      return;
     }
+
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noreferrer noopener");
+  });
+}
+
+function shouldOpenInNewTab(link) {
+  const href = link.getAttribute("href");
+  return Boolean(href && !href.startsWith("#"));
+}
+
+function observeLinkTargets() {
+  if (linkTargetObserver) {
+    return;
+  }
+
+  linkTargetObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === "attributes" && mutation.target instanceof HTMLAnchorElement) {
+        syncLinkTargets(mutation.target);
+        return;
+      }
+
+      mutation.addedNodes.forEach((node) => {
+        if (!(node instanceof Element)) {
+          return;
+        }
+
+        if (node.matches("a[href]")) {
+          syncLinkTargets(node);
+        }
+
+        syncLinkTargets(node);
+      });
+    });
+  });
+
+  linkTargetObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["href"],
   });
 }
 
