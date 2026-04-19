@@ -884,10 +884,32 @@ function shouldOpenInNewTab(link) {
       return false;
     }
 
+    if (isCampInUrl(url)) {
+      return true;
+    }
+
     return url.origin !== window.location.origin;
   } catch {
     return null;
   }
+}
+
+function isCampInUrl(url) {
+  const pathname = normalizePathname(url.pathname);
+  return (
+    pathname === "/campin" ||
+    pathname.startsWith("/campin/") ||
+    pathname === "/case-study/campin" ||
+    pathname.startsWith("/case-study/campin/")
+  );
+}
+
+function normalizePathname(pathname) {
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return pathname.slice(0, -1);
+  }
+
+  return pathname;
 }
 
 function observeLinkTargets() {
