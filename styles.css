@@ -170,17 +170,13 @@ img {
 }
 
 .desktop-nav a,
-.mobile-nav a,
-.text-link,
-.footer-links a {
+.mobile-nav a {
   color: var(--text-soft);
   transition: color 160ms ease;
 }
 
 .desktop-nav a:hover,
-.mobile-nav a:hover,
-.text-link:hover,
-.footer-links a:hover {
+.mobile-nav a:hover {
   color: var(--text);
 }
 
@@ -360,8 +356,7 @@ h2 {
 
 .hero-copy,
 .section-copy,
-.featured-summary,
-.case-study-note {
+.featured-summary {
   max-width: 42rem;
   color: var(--text-soft);
   font-size: 1.05rem;
@@ -379,8 +374,7 @@ h2 {
 }
 
 .hero-actions,
-.button-row,
-.footer-links {
+.button-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
@@ -391,16 +385,7 @@ h2 {
   margin-top: 1.75rem;
 }
 
-.hero .stack-line {
-  margin-top: 1rem;
-}
-
-[data-case-study-slot] {
-  display: contents;
-}
-
-.button,
-.text-link {
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -442,12 +427,6 @@ h2 {
 
 :root.dark .button-secondary {
   background: rgba(255, 255, 255, 0.02);
-}
-
-.text-link {
-  min-height: auto;
-  padding: 0.2rem 0;
-  font-weight: 560;
 }
 
 .stack-line {
@@ -659,12 +638,6 @@ h2 {
   display: block;
 }
 
-.is-link-disabled {
-  pointer-events: none;
-  cursor: default;
-  opacity: 0.58;
-}
-
 .card-grid {
   display: grid;
   gap: 1rem;
@@ -695,9 +668,7 @@ h2 {
 
 .info-card p,
 .training-list li,
-.stack-item-value,
-.contact-list a,
-.contact-list span {
+.stack-item-value {
   color: var(--text-soft);
 }
 
@@ -881,10 +852,6 @@ h2 {
   gap: 0.5rem;
 }
 
-.footer-shell > p {
-  display: none;
-}
-
 .footer-main {
   display: flex;
   align-items: center;
@@ -1010,10 +977,6 @@ h2 {
 
   .button {
     width: 100%;
-  }
-
-  .text-link {
-    width: fit-content;
   }
 
   .preview-body {

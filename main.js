@@ -53,7 +53,6 @@ const CONTENT = {
         "Construyo experiencias web claras, usables y cuidadas, con especial atención a la estructura, la iteración y la calidad visual.",
       primaryCta: "Ver proyectos",
       secondaryCta: "Contacto",
-      stack: "React · TypeScript · Vite · Tailwind · Zustand · Supabase",
     },
     featured: {
       label: "Proyecto destacado",
@@ -62,7 +61,6 @@ const CONTENT = {
         "Planificación de escapadas de camping con una experiencia centrada en claridad, organización y continuidad de uso.",
       description:
         "CampIn está planteado como un producto web orientado a facilitar la preparación de viajes de camping mediante flujos claros, persistencia de viajes y una interfaz pensada para reducir fricción.",
-      previewCta: "Abrir app ↗",
       highlights: [
         "Checklists contextuales orientadas a planificación real",
         "Persistencia y continuidad entre sesiones",
@@ -75,18 +73,15 @@ const CONTENT = {
         code: "Ver código",
         caseStudy: "Caso de estudio",
       },
-      caseStudyNote: "Próximamente",
       previewGalleryLabel: "Capturas de CampIn",
       previewImageLabel: "Captura de CampIn",
     },
     about: {
-      label: "Sobre mí",
       title: "Sobre mí",
       body:
         "Estoy reorientando mi carrera hacia el desarrollo web con foco en frontend, producto y construcción estructurada. Me interesa crear interfaces claras, cuidadas y útiles, con atención al detalle y criterio real de ejecución.",
     },
     howIWork: {
-      label: "Cómo trabajo",
       title: "Cómo trabajo",
       cards: [
         {
@@ -108,12 +103,10 @@ const CONTENT = {
       ],
     },
     stack: {
-      label: "Stack",
       title: "Stack",
       items: STACK_ITEMS,
     },
     training: {
-      label: "Formación",
       title: "Formación",
       items: [
         "Full-Stack Developer — Codecademy",
@@ -123,7 +116,6 @@ const CONTENT = {
       ],
     },
     contact: {
-      label: "Contacto",
       title: "Contacto",
       body:
         "Disponible para oportunidades de desarrollo web y full-stack. Puedes escribirme o encontrar más contexto profesional en LinkedIn y GitHub.",
@@ -142,7 +134,6 @@ const CONTENT = {
       ],
     },
     footer: {
-      copy: "Rafa Alcocer © 2026",
       role: "Full-Stack Developer",
     },
   },
@@ -171,7 +162,6 @@ const CONTENT = {
         "I build clean, usable web experiences with strong attention to structure, iteration, and visual clarity.",
       primaryCta: "View projects",
       secondaryCta: "Contact",
-      stack: "React · TypeScript · Vite · Tailwind · Zustand · Supabase",
     },
     featured: {
       label: "Featured project",
@@ -180,7 +170,6 @@ const CONTENT = {
         "Camping trip planning with a product-oriented experience focused on clarity, organization, and continuity of use.",
       description:
         "CampIn is designed as a web product that helps users prepare camping trips through clear flows, trip persistence, and an interface built to reduce friction.",
-      previewCta: "Open app ↗",
       highlights: [
         "Contextual checklists for real trip planning",
         "Persistence and continuity across sessions",
@@ -193,18 +182,15 @@ const CONTENT = {
         code: "View code",
         caseStudy: "Case study",
       },
-      caseStudyNote: "Coming soon",
       previewGalleryLabel: "CampIn screenshots",
       previewImageLabel: "CampIn screenshot",
     },
     about: {
-      label: "About",
       title: "About",
       body:
         "I’m transitioning into web development with a strong focus on frontend, product thinking, and structured execution. I care about building interfaces that feel clear, intentional, and genuinely useful.",
     },
     howIWork: {
-      label: "How I work",
       title: "How I work",
       cards: [
         {
@@ -226,12 +212,10 @@ const CONTENT = {
       ],
     },
     stack: {
-      label: "Stack",
       title: "Stack",
       items: STACK_ITEMS,
     },
     training: {
-      label: "Training",
       title: "Training",
       items: [
         "Full-Stack Developer — Codecademy",
@@ -241,7 +225,6 @@ const CONTENT = {
       ],
     },
     contact: {
-      label: "Contact",
       title: "Contact",
       body:
         "Available for web development and full-stack opportunities. You can reach me by email or find more professional context on LinkedIn and GitHub.",
@@ -260,22 +243,16 @@ const CONTENT = {
       ],
     },
     footer: {
-      copy: "Rafa Alcocer © 2026",
       role: "Full-Stack Developer",
     },
   },
 };
 
 const externalLinks = {
-  github: GITHUB_URL,
-  linkedin: LINKEDIN_URL,
   campinApp: CAMPIN_APP_URL,
   campinRepo: CAMPIN_REPO_URL,
   campinCaseStudy: CAMPIN_CASE_STUDY_URL,
 };
-
-CONTENT.es.footer.copy = "© 2026";
-CONTENT.en.footer.copy = "© 2026";
 
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
@@ -292,8 +269,6 @@ const highlightsList = document.querySelector("[data-featured-highlights]");
 const campinPreviewMain = document.querySelector("[data-campin-preview-main]");
 const campinPreviewThumbs = document.querySelectorAll("[data-preview-index]");
 const campinPreviewThumbsContainer = document.querySelector("[data-campin-preview-thumbnails]");
-const caseStudySlot = document.querySelector("[data-case-study-slot]");
-const caseStudyNote = document.querySelector(".case-study-note");
 
 const initialLanguage = getInitialLanguage();
 const initialTheme = getInitialTheme();
@@ -392,7 +367,6 @@ function applyLanguage(language) {
   renderTraining(copy.training.items);
   renderContactLinks(copy.contact.items);
   renderFooterContact(copy.contact.items);
-  renderCaseStudy(copy.featured);
   renderCampinPreview(language);
 
   syncLinkTargets();
@@ -521,38 +495,16 @@ function renderFooterContact(items) {
 
   footerContactList.innerHTML = items
     .map((item) => {
-      const hasHref = Boolean(item.href);
       const ariaLabel = `${item.label} — ${item.value}`;
       const icon = getContactIcon(item.label);
 
-      if (hasHref) {
-        return `
-          <a class="contact-link" href="${item.href}" aria-label="${ariaLabel}" title="${ariaLabel}">
-            <span class="contact-link-icon" aria-hidden="true">${icon}</span>
-          </a>
-        `;
-      }
-
       return `
-        <span class="contact-link is-link-disabled" role="img" aria-label="${ariaLabel}" title="${ariaLabel}">
+        <a class="contact-link" href="${item.href}" aria-label="${ariaLabel}" title="${ariaLabel}">
           <span class="contact-link-icon" aria-hidden="true">${icon}</span>
-        </span>
+        </a>
       `;
     })
     .join("");
-}
-
-function renderCaseStudy(featuredCopy) {
-  if (!caseStudySlot || !caseStudyNote) {
-    return;
-  }
-
-  caseStudySlot.innerHTML = `
-    <a class="button button-secondary" href="${CAMPIN_CASE_STUDY_URL}">
-      ${featuredCopy.buttons.caseStudy}
-    </a>
-  `;
-  caseStudyNote.hidden = true;
 }
 
 function renderCampinPreview(language) {
@@ -601,18 +553,10 @@ function syncExternalLinks() {
     const href = externalLinks[key];
     if (!href) {
       node.removeAttribute("href");
-      node.removeAttribute("target");
-      node.removeAttribute("rel");
-      node.setAttribute("aria-disabled", "true");
-      node.setAttribute("tabindex", "-1");
-      node.classList.add("is-link-disabled");
       return;
     }
 
     node.setAttribute("href", href);
-    node.classList.remove("is-link-disabled");
-    node.removeAttribute("aria-disabled");
-    node.removeAttribute("tabindex");
   });
 }
 

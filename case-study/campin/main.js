@@ -759,18 +759,10 @@ function renderFooterContact(language) {
     .map((item) => {
       const icon = getContactIcon(item.label);
 
-      if (item.href) {
-        return `
-          <a class="contact-link" href="${item.href}" aria-label="${item.ariaLabel}" title="${item.ariaLabel}">
-            <span class="contact-link-icon" aria-hidden="true">${icon}</span>
-          </a>
-        `;
-      }
-
       return `
-        <span class="contact-link is-link-disabled" role="img" aria-label="${item.ariaLabel}" title="${item.ariaLabel}">
+        <a class="contact-link" href="${item.href}" aria-label="${item.ariaLabel}" title="${item.ariaLabel}">
           <span class="contact-link-icon" aria-hidden="true">${icon}</span>
-        </span>
+        </a>
       `;
     })
     .join("");
