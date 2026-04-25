@@ -832,6 +832,40 @@ h2 {
   display: block;
 }
 
+.contact-section {
+  padding-top: clamp(3.25rem, 5vw, 4.5rem);
+  padding-bottom: clamp(2.6rem, 4vw, 3.4rem);
+}
+
+.contact-section-shell {
+  gap: 1rem;
+}
+
+.contact-section-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.3rem;
+}
+
+.contact-section-link {
+  color: var(--text);
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.08rem;
+  border-bottom: 1px solid var(--line);
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.contact-section-link:hover {
+  color: var(--accent-strong);
+  border-color: var(--accent);
+}
+
+.contact-section + .site-footer {
+  margin-top: 0;
+}
+
 .site-footer {
   padding: 0.8rem 0 0.68rem;
   border-top: 1px solid var(--line);
@@ -1001,6 +1035,10 @@ h2 {
 
   .stack-card {
     min-height: 6rem;
+  }
+
+  .contact-section-links {
+    gap: 0.75rem 1rem;
   }
 
   .site-footer {

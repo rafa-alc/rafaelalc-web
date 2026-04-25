@@ -2,7 +2,7 @@ const CAMPIN_APP_URL = "/campin";
 const CAMPIN_REPO_URL = "https://github.com/rafa-alc/camping-app";
 const CONTACT_EMAIL = "hello@rafaelalc.dev";
 const GITHUB_URL = "https://github.com/rafa-alc";
-const LINKEDIN_URL = "";
+const LINKEDIN_URL = "https://www.linkedin.com/in/rafa-alcocer/";
 
 const STORAGE_KEYS = {
   language: "portfolio-language",
@@ -806,14 +806,14 @@ function getFooterContactItems(language) {
         ariaLabel: "Email — Enviar email",
       },
       {
+        label: "LinkedIn",
+        href: LINKEDIN_URL,
+        ariaLabel: "LinkedIn — Ver perfil",
+      },
+      {
         label: "GitHub",
         href: GITHUB_URL,
         ariaLabel: "GitHub — Ver perfil",
-      },
-      {
-        label: "LinkedIn",
-        href: LINKEDIN_URL,
-        ariaLabel: LINKEDIN_URL ? "LinkedIn — Ver perfil" : "LinkedIn — Perfil pendiente",
       },
     ];
   }
@@ -825,14 +825,14 @@ function getFooterContactItems(language) {
       ariaLabel: "Email — Send email",
     },
     {
+      label: "LinkedIn",
+      href: LINKEDIN_URL,
+      ariaLabel: "LinkedIn — View profile",
+    },
+    {
       label: "GitHub",
       href: GITHUB_URL,
       ariaLabel: "GitHub — View profile",
-    },
-    {
-      label: "LinkedIn",
-      href: LINKEDIN_URL,
-      ariaLabel: LINKEDIN_URL ? "LinkedIn — View profile" : "LinkedIn — Profile pending",
     },
   ];
 }

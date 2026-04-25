@@ -4,7 +4,7 @@ const CAMPIN_REPO_URL = "https://github.com/rafa-alc/camping-app";
 const CAMPIN_CASE_STUDY_URL = "/case-study/campin/";
 const CONTACT_EMAIL = `hello@${SITE_DOMAIN}`;
 const GITHUB_URL = "https://github.com/rafa-alc";
-const LINKEDIN_URL = "";
+const LINKEDIN_URL = "https://www.linkedin.com/in/rafa-alcocer/";
 
 const STORAGE_KEYS = {
   language: "portfolio-language",
@@ -51,9 +51,8 @@ const CONTENT = {
       headline: "Frontend, producto y desarrollo estructurado.",
       body:
         "Construyo experiencias web claras, usables y cuidadas, con especial atención a la estructura, la iteración y la calidad visual.",
-      primaryCta: "Ver CampIn",
+      primaryCta: "Ver proyectos",
       secondaryCta: "Contacto",
-      tertiaryCta: "GitHub",
       stack: "React · TypeScript · Vite · Tailwind · Zustand · Supabase",
     },
     featured: {
@@ -126,18 +125,19 @@ const CONTENT = {
     contact: {
       label: "Contacto",
       title: "Contacto",
-      body: "Disponible para oportunidades junior en desarrollo web.",
+      body:
+        "Disponible para oportunidades de desarrollo web y full-stack. Puedes escribirme o encontrar más contexto profesional en LinkedIn y GitHub.",
       items: [
-        { label: "Email", value: "Enviar email", href: `mailto:${CONTACT_EMAIL}` },
-        {
-          label: "GitHub",
-          value: "Ver perfil",
-          href: GITHUB_URL,
-        },
+        { label: "Email", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
         {
           label: "LinkedIn",
-          value: LINKEDIN_URL ? "Ver perfil" : "Perfil pendiente",
+          value: "LinkedIn",
           href: LINKEDIN_URL,
+        },
+        {
+          label: "GitHub",
+          value: "GitHub",
+          href: GITHUB_URL,
         },
       ],
     },
@@ -169,9 +169,8 @@ const CONTENT = {
       headline: "Frontend, product thinking, and structured development.",
       body:
         "I build clean, usable web experiences with strong attention to structure, iteration, and visual clarity.",
-      primaryCta: "View CampIn",
+      primaryCta: "View projects",
       secondaryCta: "Contact",
-      tertiaryCta: "GitHub",
       stack: "React · TypeScript · Vite · Tailwind · Zustand · Supabase",
     },
     featured: {
@@ -244,18 +243,19 @@ const CONTENT = {
     contact: {
       label: "Contact",
       title: "Contact",
-      body: "Open to junior opportunities in web development.",
+      body:
+        "Available for web development and full-stack opportunities. You can reach me by email or find more professional context on LinkedIn and GitHub.",
       items: [
-        { label: "Email", value: "Send email", href: `mailto:${CONTACT_EMAIL}` },
-        {
-          label: "GitHub",
-          value: "View profile",
-          href: GITHUB_URL,
-        },
+        { label: "Email", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
         {
           label: "LinkedIn",
-          value: LINKEDIN_URL ? "View profile" : "Profile pending",
+          value: "LinkedIn",
           href: LINKEDIN_URL,
+        },
+        {
+          label: "GitHub",
+          value: "GitHub",
+          href: GITHUB_URL,
         },
       ],
     },
@@ -286,6 +286,7 @@ const navLinks = document.querySelectorAll("[data-nav-link]");
 const howIWorkList = document.querySelector("[data-how-i-work-list]");
 const stackList = document.querySelector("[data-stack-list]");
 const trainingList = document.querySelector("[data-training-list]");
+const contactLinksList = document.querySelector("[data-contact-links]");
 const footerContactList = document.querySelector("[data-footer-contact]");
 const highlightsList = document.querySelector("[data-featured-highlights]");
 const campinPreviewMain = document.querySelector("[data-campin-preview-main]");
@@ -389,10 +390,12 @@ function applyLanguage(language) {
   renderHowIWork(copy.howIWork.cards);
   renderStack(copy.stack.items);
   renderTraining(copy.training.items);
+  renderContactLinks(copy.contact.items);
   renderFooterContact(copy.contact.items);
   renderCaseStudy(copy.featured);
   renderCampinPreview(language);
 
+  syncLinkTargets();
   updateThemeToggleLabel();
   renderMenuState();
 }
@@ -495,6 +498,22 @@ function renderTraining(items) {
   trainingList.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
 }
 
+function renderContactLinks(items) {
+  if (!contactLinksList) {
+    return;
+  }
+
+  contactLinksList.innerHTML = items
+    .map(
+      (item) => `
+        <a class="contact-section-link" href="${item.href}">
+          ${item.value}
+        </a>
+      `,
+    )
+    .join("");
+}
+
 function renderFooterContact(items) {
   if (!footerContactList) {
     return;
@@ -503,14 +522,12 @@ function renderFooterContact(items) {
   footerContactList.innerHTML = items
     .map((item) => {
       const hasHref = Boolean(item.href);
-      const isExternal = hasHref && item.href.startsWith("http");
-      const rel = isExternal ? ' rel="noreferrer noopener" target="_blank"' : "";
       const ariaLabel = `${item.label} — ${item.value}`;
       const icon = getContactIcon(item.label);
 
       if (hasHref) {
         return `
-          <a class="contact-link" href="${item.href}"${rel} aria-label="${ariaLabel}" title="${ariaLabel}">
+          <a class="contact-link" href="${item.href}" aria-label="${ariaLabel}" title="${ariaLabel}">
             <span class="contact-link-icon" aria-hidden="true">${icon}</span>
           </a>
         `;
