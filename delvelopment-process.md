@@ -287,30 +287,6 @@ Aquí es útil porque:
 - CampIn tiene una ruta propia
 - las reglas de `rewrite` permiten controlar cómo se resuelven esas URLs
 
-### `eslint.config.js`
-
-Ahora mismo este repo no tiene un archivo `eslint.config.js`.
-
-Pero como me has pedido que lo explique, lo explico de forma clara:
-
-`eslint.config.js` es el archivo donde se configura ESLint.
-
-ESLint es una herramienta que revisa tu JavaScript o TypeScript para detectar:
-
-- errores comunes
-- malas prácticas
-- inconsistencias de estilo
-- cosas olvidadas, como variables no usadas
-
-Por ejemplo, si este proyecto lo necesitara más adelante, `eslint.config.js` podría servir para:
-
-- evitar código muerto
-- detectar imports o variables que ya no se usan
-- mantener el código más consistente
-- hacer limpieza más fácil en futuras iteraciones
-
-En un repo pequeño como este, todavía se puede vivir sin ESLint, pero si el proyecto creciera, sería una herramienta muy razonable de añadir.
-
 ### `node --check`
 
 Esta comprobación la he usado para validar la sintaxis de los archivos JS.
