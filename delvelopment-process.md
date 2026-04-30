@@ -2,49 +2,47 @@
 
 ## 1. Qué es este proyecto
 
-Este proyecto es mi portfolio personal.
+Este repositorio contiene mi portfolio personal.
 
-La idea principal no ha sido construir una aplicación compleja, sino una web clara, ligera y fácil de mantener. Por eso la base técnica es muy simple:
+La intención desde el principio no ha sido montar una aplicación compleja, sino una web clara, ligera y fácil de mantener. Por eso la base técnica es bastante directa:
 
 - `index.html`
 - `styles.css`
 - `main.js`
 - carpeta `assets/`
-- una página extra de case study en `case-study/campin/`
+- una página de case study en `case-study/campin/`
 - `vercel.json` para la parte de despliegue
 
-No hay React, no hay Vite dentro de este repo, no hay router y no hay sistema de componentes como en una SPA. La decisión aquí fue mantenerlo simple porque el portfolio no necesitaba más complejidad.
+Aquí no hay React, no hay router y tampoco una arquitectura pesada. En este caso no lo veía necesario. Para lo que tenía que hacer la web, una base estática bien organizada me parecía la mejor decisión.
 
-## 2. Qué lógica he seguido para construirlo
+## 2. Qué enfoque seguí para construirlo
 
-Yo lo entiendo así, explicado como lo pensaría un junior developer:
+Mi forma de pensar este proyecto fue bastante simple: antes de hablar de herramientas o de código, tenía que tener claro qué quería comunicar.
 
-### Paso 1: primero definir el objetivo de la web
-
-Antes de tocar código, lo importante era saber qué tenía que comunicar la página:
+La web debía dejar claro:
 
 - quién soy
-- qué hago
+- en qué estoy centrado
 - cuál es mi proyecto principal
 - cómo trabajo
 - qué stack uso
 - cómo contactarme
 
-Eso hizo que la arquitectura fuera de una sola página principal, con scroll por secciones, más una página separada para el case study de CampIn.
+Con eso ya definido, la estructura salió de forma bastante natural: una home de una sola página, con scroll por secciones, y una página separada para el case study de CampIn.
 
-### Paso 2: mantener una estructura pequeña
+## 3. Por qué preferí una base pequeña
 
-Como el repo ya era estático, la mejor decisión fue no meter un framework.
+Como el portfolio no necesitaba una lógica de aplicación compleja, preferí no añadir herramientas de más.
 
-Si hubiera añadido React o un sistema más complejo, el proyecto habría ganado peso técnico sin necesidad real. En un portfolio, eso muchas veces empeora la mantenibilidad.
+Meter un framework solo por “hacerlo más pro” me parecía un error. Habría añadido más peso técnico, más archivos y más decisiones, sin mejorar realmente el resultado.
 
-Por eso la lógica quedó así:
+Por eso me quedé con una separación muy clara:
 
-- HTML para la estructura base
-- CSS para todo el sistema visual
+- HTML para la estructura
+- CSS para el sistema visual
 - JavaScript para el comportamiento
 
-## 3. Cómo está repartida la responsabilidad del código
+## 4. Cómo está repartido el proyecto
 
 ### `index.html`
 
@@ -60,164 +58,147 @@ Aquí vive la estructura principal de la home:
 - contact
 - footer
 
-La idea es que el HTML defina la estructura semántica de la página y no una versión vieja que luego JavaScript tenga que “corregir”.
+La idea es que el HTML marque la estructura real de la página, no una versión vieja que luego haya que corregir desde JavaScript.
 
 ### `styles.css`
 
-Aquí vive toda la capa visual:
+Aquí está toda la capa visual:
 
 - colores
 - tipografía
 - espaciado
-- dark mode
 - responsive
+- dark mode
 - estilos del case study
 
-Lo bueno de tener un solo CSS en este caso es que el proyecto sigue siendo pequeño y se entiende rápido.
+Que todo esté en un solo CSS no me parece un problema aquí, porque el proyecto sigue siendo pequeño y fácil de recorrer.
 
 ### `main.js`
 
-Aquí vive la lógica de la home:
+Aquí está la lógica de la home:
 
 - idioma ES/EN
 - tema claro/oscuro
 - menú mobile
-- links dinámicos
-- carrusel manual de CampIn
-- render de bloques que dependen del idioma
+- control de enlaces
+- preview manual de CampIn
+- render de contenido que depende del idioma
 
-En vez de duplicar toda la web en español y en inglés, se usa un objeto `CONTENT` con las dos versiones del texto. Eso hace que cambiar contenido sea bastante más ordenado.
+En vez de duplicar la web en dos idiomas, preferí trabajar con un objeto `CONTENT` y renderizar desde ahí lo que cambia.
 
 ### `case-study/campin/index.html` y `case-study/campin/main.js`
 
 Aquí vive la página del case study.
 
-Se separó de la home porque ya tenía suficiente contenido propio como para merecer una página independiente. La lógica es parecida a la home:
+La separé de la home porque CampIn ya tenía suficiente contenido como para merecer un espacio propio. Aun así, quise que siguiera respirando el mismo lenguaje visual y la misma lógica general del portfolio.
 
-- estructura HTML simple
-- contenido renderizado desde JS
-- soporte ES/EN
-- soporte light/dark
+## 5. La idea de “una sola fuente de verdad”
 
-## 4. Por qué usé una sola fuente de verdad
+Una de las decisiones más importantes fue evitar que el proyecto tuviera varias versiones del mismo contenido a la vez.
 
-Una de las decisiones importantes fue evitar que el proyecto tuviera varias versiones del mismo contenido al mismo tiempo.
+Por ejemplo, no quería esto:
 
-Por ejemplo, una mala práctica sería esta:
+- texto antiguo en HTML
+- texto nuevo que JS lo pisa
+- estados viejos escondidos con CSS
 
-- dejar un texto viejo en el HTML
-- luego cambiarlo con JavaScript
-- luego esconder otro fallback con CSS
+Eso puede funcionar a nivel visual, pero por dentro deja una base confusa.
 
-Eso funciona “visualmente”, pero ensucia mucho la base del proyecto.
+Lo que he intentado hacer es esto:
 
-La lógica correcta aquí fue:
+- si algo es estable, vive limpio en HTML
+- si algo depende del idioma o del estado, lo controla JS
+- si algo ya no existe, se elimina
 
-- si un bloque es estático y estable, vive limpio en HTML
-- si un bloque depende del idioma o de un estado, lo controla JS
-- si una cosa ya no existe, se elimina
+Para mí esa parte era importante, porque un portfolio también habla de cómo ordeno el trabajo por dentro.
 
-Esto hace que el proyecto sea más fácil de leer y menos confuso.
-
-## 5. Cómo resolví el multidioma
+## 6. Cómo resolví el multidioma
 
 El multidioma se resuelve con un objeto `CONTENT` en JavaScript.
 
-La idea básica es:
+La lógica es bastante simple:
 
-1. Guardar todos los textos en `CONTENT.es` y `CONTENT.en`
-2. Leer el idioma guardado en `localStorage`
-3. Si no hay idioma guardado, usar el idioma del navegador
-4. Aplicar el texto correcto al cargar la página
+1. guardar los textos en `CONTENT.es` y `CONTENT.en`
+2. mirar si ya hay un idioma guardado en `localStorage`
+3. si no lo hay, usar el idioma del navegador
+4. aplicar el contenido correspondiente al cargar
 
-Ventajas de esta solución:
+Me gustó esta solución porque:
 
-- no hace falta duplicar páginas
-- no hace falta una librería de i18n
-- es fácil editar textos
+- evita duplicar páginas
+- no necesita una librería extra
+- hace que editar el contenido sea bastante sencillo
 
-Para un portfolio estático, esto es suficiente y mantiene el código simple.
+Para un portfolio de este tamaño, me parece una solución suficiente y limpia.
 
-## 6. Cómo resolví el dark mode
+## 7. Cómo resolví el dark mode
 
 El dark mode se apoya en una clase `dark` sobre `document.documentElement`.
 
 La lógica es:
 
-1. mirar si hay tema guardado en `localStorage`
+1. leer si hay un tema guardado en `localStorage`
 2. si no lo hay, usar `prefers-color-scheme`
-3. añadir o quitar la clase `dark`
-4. hacer que CSS cambie colores usando variables
+3. aplicar o quitar la clase `dark`
+4. dejar que CSS haga el resto con variables
 
-Esto es mejor que cambiar estilos uno a uno por JavaScript, porque:
+Me parecía la forma más ordenada de hacerlo, porque JavaScript solo gestiona el estado y CSS sigue controlando la presentación.
 
-- CSS sigue controlando la presentación
-- JS solo cambia el estado
-- el sistema es más limpio
+## 8. Cómo traté los enlaces
 
-## 7. Cómo resolví los enlaces
+Aquí sí quise tener un poco de criterio, porque no todos los enlaces significan lo mismo.
 
-Aquí había una parte importante de lógica.
+No es lo mismo:
 
-No todos los enlaces deben abrirse igual:
+- un anchor interno como `#contact`
+- una ruta interna como `/case-study/campin/`
+- un enlace externo como GitHub o LinkedIn
+- un `mailto:`
 
-- anchors internos como `#contact` deben quedarse en la misma pestaña
-- rutas internas como `/case-study/campin/` deben comportarse como navegación del sitio
-- enlaces externos reales como GitHub o LinkedIn pueden abrirse en una nueva pestaña
-- `mailto:` debe comportarse normal
+La lógica final distingue entre navegación interna y salida real del sitio. Eso me parecía importante para que la experiencia tenga sentido y no se comporte todo igual por inercia.
 
-La razón de separar esto es que no todos los links tienen el mismo significado.
+## 9. Cómo enfoqué el bloque de CampIn
 
-Un enlace interno forma parte de la navegación del producto.
-Un enlace externo te saca del producto.
+CampIn es el proyecto con más peso dentro del portfolio, así que la home tenía que reflejarlo sin convertirse en otra aplicación metida dentro.
 
-## 8. Cómo resolví el bloque de CampIn
+Por eso la solución fue esta:
 
-CampIn es el proyecto principal del portfolio, así que la lógica fue darle más peso sin convertir la home en otra app.
+- mostrar una preview real del proyecto
+- dejar CTAs claros
+- tener una página de case study aparte
+- mantener la app real en su propia ruta
 
-Por eso:
+Así el recorrido queda más natural:
 
-- en la home se muestra una preview visual
-- hay CTAs claros
-- existe una página de case study separada
-- la app real va por su propia ruta
+1. primero ves el portfolio
+2. luego puedes entrar al case study
+3. y si quieres, ya vas a la app
 
-Esto deja tres niveles de profundidad:
+## 10. Por qué el case study va separado
 
-1. home del portfolio
-2. case study
-3. app de CampIn
+El case study de CampIn no lo quise meter dentro de la home porque habría alargado demasiado la página y habría mezclado dos niveles de lectura distintos.
 
-Eso es útil porque no todo visitante necesita llegar al mismo nivel de detalle.
+La home tiene que presentar.
+El case study tiene que explicar.
 
-## 9. Cómo resolví el case study
+Separarlo me permitió:
 
-El case study se hizo como una página estática separada, no como una SPA dentro de la home.
+- mantener la home más limpia
+- dar contexto real al proyecto
+- explicar decisiones sin saturar la portada
+- conservar una navegación clara
 
-La decisión tuvo sentido por varias razones:
-
-- era más limpio semánticamente
-- evitaba hacer la home demasiado larga
-- permitía explicar el proyecto con más calma
-- mantenía una navegación clara
-
-También se decidió reutilizar el mismo estilo global del portfolio para que la página no pareciera otro producto distinto.
-
-## 10. Qué herramientas he usado y por qué
+## 11. Herramientas que he usado y por qué
 
 ### HTML
 
-Se usa para la estructura semántica.
+Lo uso para la estructura semántica de la web.
 
-Es importante porque:
-
-- da orden al contenido
-- mejora accesibilidad básica
-- hace que la página sea más entendible
+Es la base para que el contenido tenga orden y para que la página se entienda bien tanto visualmente como a nivel de accesibilidad básica.
 
 ### CSS
 
-Se usa para:
+Lo uso para toda la parte visual:
 
 - layout
 - responsive
@@ -225,152 +206,141 @@ Se usa para:
 - dark mode
 - cards
 - botones
-- tipografía
+- espaciado
 
-CSS aquí no es un detalle secundario: es parte clave de la experiencia visual del portfolio.
+En este proyecto CSS tiene bastante peso, porque gran parte del resultado depende de que la lectura y la jerarquía visual estén bien resueltas.
 
 ### JavaScript
 
-Se usa para:
+Lo uso solo para lo que realmente necesita comportamiento:
 
 - cambiar idioma
 - cambiar tema
-- gestionar el menú mobile
-- gestionar algunos enlaces
-- cambiar la preview de CampIn
-- renderizar contenido dinámico
+- abrir y cerrar el menú mobile
+- gestionar enlaces
+- controlar la preview de CampIn
+- renderizar contenido que depende del idioma
 
-La idea ha sido usar JavaScript solo donde aporta comportamiento real.
+He intentado no usar JavaScript para cosas que realmente pertenecen a HTML o CSS.
 
 ### `localStorage`
 
-Se usa para recordar:
+Lo uso para recordar:
 
 - idioma seleccionado
 - tema seleccionado
 
-Esto mejora la experiencia porque el usuario no tiene que volver a configurarlo en cada visita.
+Es un detalle pequeño, pero mejora bastante la experiencia porque la web conserva la preferencia del usuario entre visitas.
 
 ### Git
 
-Se usa para versionar cambios.
+Lo uso para versionar el proyecto.
 
-Sirve para:
+Me sirve para:
 
-- guardar el historial del proyecto
-- hacer commits pequeños
-- poder volver atrás si algo falla
-- entender cómo ha evolucionado la web
+- trabajar por cambios pequeños
+- guardar el historial
+- volver atrás si algo no sale bien
+- entender mejor cómo evoluciona la web
 
 ### GitHub
 
-Se usa para:
+Lo uso como repositorio remoto y como referencia de seguimiento del proyecto.
 
-- alojar el repositorio
-- revisar cambios
-- tener una copia remota
-- publicar el trabajo
+También me sirve para revisar cambios publicados y tener una versión accesible desde fuera del entorno local.
 
 ### Vercel
 
-Se usa para el despliegue.
+Lo uso para el despliegue.
 
-En este repo aparece también `vercel.json`, que sirve para definir reglas concretas de publicación. En este caso se usa para hacer `rewrites` de la ruta `/campin`, de forma que el portfolio pueda apuntar a la app de CampIn sin complicar la navegación.
+En este proyecto es importante porque el portfolio y CampIn conviven dentro de una misma idea de navegación, y `vercel.json` ayuda a resolver esa parte de rutas.
 
 ### `vercel.json`
 
-Sirve para configurar cómo Vercel interpreta ciertas rutas.
+Este archivo sirve para definir reglas concretas de publicación en Vercel.
 
-Aquí es útil porque:
-
-- el portfolio vive en un sitio
-- CampIn tiene una ruta propia
-- las reglas de `rewrite` permiten controlar cómo se resuelven esas URLs
+En este caso lo uso para gestionar la ruta `/campin` y hacer que el portfolio pueda apuntar a la app de CampIn de forma limpia, sin añadir una estructura más compleja dentro del propio repo.
 
 ### `node --check`
 
-Esta comprobación la he usado para validar la sintaxis de los archivos JS.
+Lo he usado como comprobación rápida para validar la sintaxis de los archivos JS.
 
-Sirve para comprobar algo muy concreto:
+No sustituye a una suite de tests, pero en un proyecto estático como este es una forma útil de comprobar que no he roto la sintaxis al tocar `main.js` o el JS del case study.
 
-- que el archivo JavaScript no tenga errores de sintaxis
-
-No sustituye a tests reales, pero para un proyecto estático sin test suite es una verificación útil y rápida.
-
-## 11. Qué no se ha usado y por qué
+## 12. Qué he preferido no usar
 
 ### React
 
-No se usa dentro de este repo.
+No lo he usado dentro de este repo porque aquí no me aportaba una ventaja real.
 
-La razón no es que React sea mala idea, sino que aquí no hacía falta. Para una web estática con interacciones pequeñas, usar React habría añadido complejidad innecesaria.
+Para una web estática con interacciones pequeñas, me parecía mejor mantener una base simple antes que sumar complejidad porque sí.
 
 ### Router
 
-No se usa un router de SPA.
+Tampoco he usado un router de SPA.
 
-La navegación es suficiente con:
+La navegación se resuelve bien con:
 
 - anchors para secciones internas
 - archivos HTML separados para páginas concretas
 
 ### Librerías de i18n
 
-No se usan porque el contenido es manejable y un objeto `CONTENT` ya resuelve bien el problema.
+No las he usado porque el volumen de contenido todavía es manejable y el objeto `CONTENT` cubre bien esa necesidad.
 
 ### Tests automáticos
 
 Ahora mismo el repo no tiene una suite de tests.
 
-Eso significa que la verificación ha dependido sobre todo de:
+Eso hace que la validación dependa sobre todo de:
 
 - revisión manual
 - comprobación de sintaxis
-- validación visual
+- revisión visual
 
-## 12. Qué intenté evitar durante la construcción
+## 13. Cosas que intenté evitar
 
-Estas han sido ideas que intenté evitar a propósito:
+Durante la construcción intenté evitar sobre todo esto:
 
 - duplicar contenido viejo y nuevo
 - esconder cosas obsoletas con CSS o JS
-- añadir herramientas solo porque “suenan profesionales”
-- rehacer bloques enteros cuando bastaba con limpiar
-- meter más arquitectura de la necesaria
+- meter herramientas solo por aparentar más complejidad
+- rehacer bloques enteros cuando bastaba con ordenarlos mejor
+- añadir arquitectura sin necesidad real
 
-Esto es importante porque un portfolio puede parecer sencillo por fuera, pero por dentro también debería ser sencillo.
+Para mí, en un portfolio eso importa bastante. No solo por limpieza, sino porque también refleja criterio.
 
-## 13. Qué he aprendido de esta forma de construir
+## 14. Qué me llevo de este proceso
 
-Lo explico de forma muy directa:
+Si tengo que resumir lo aprendido, diría esto:
 
 - no siempre la mejor solución es la más sofisticada
-- una buena estructura evita muchos problemas después
-- limpiar legacy también es desarrollo
-- pensar en una sola fuente de verdad ahorra confusión
-- un portfolio también necesita criterio de producto, no solo código
+- una base clara ahorra muchos problemas después
+- limpiar legacy también forma parte del desarrollo
+- pensar en una sola fuente de verdad ayuda mucho
+- un portfolio no es solo diseño o código: también es estructura y criterio
 
-## 14. Si yo retomara este proyecto después
+## 15. Si retomara este proyecto más adelante
 
-Si volviera a este repo dentro de unos meses, lo primero que miraría sería:
+Si volviera a este repo dentro de unos meses, el orden que seguiría para entenderlo rápido sería:
 
-1. `index.html` para entender la estructura general
-2. `main.js` para ver idioma, tema, links y renderizado
-3. `styles.css` para el sistema visual
-4. `case-study/campin/` para la página específica del proyecto
-5. `vercel.json` para entender cómo se resuelve `/campin`
+1. `index.html` para ver la estructura de la home
+2. `main.js` para revisar idioma, tema, enlaces y comportamiento
+3. `styles.css` para entender el sistema visual
+4. `case-study/campin/` para revisar la página del case study
+5. `vercel.json` para ver cómo se resuelve la parte de rutas
 
-Ese orden me permitiría volver a entender el proyecto rápido, que es justo una de las cosas que quería conseguir con esta base limpia.
+Ese orden me parece útil porque va de lo general a lo concreto.
 
-## 15. Resumen corto
+## 16. Resumen final
 
-La lógica de construcción de este portfolio ha sido esta:
+La lógica general con la que he construido este portfolio ha sido bastante clara:
 
-- mantenerlo simple
+- mantener la base simple
 - separar bien estructura, estilos y comportamiento
-- usar JavaScript solo donde aporta valor real
+- usar JavaScript solo cuando aporta algo real
 - evitar duplicidades
 - dejar una sola fuente de verdad por bloque
-- priorizar claridad y mantenimiento por encima de “hacer más cosas”
+- priorizar claridad y mantenimiento por encima de complejidad innecesaria
 
-Esa es, en realidad, la idea principal de todo el proceso.
+En el fondo, esa es la idea principal de todo el proyecto.
